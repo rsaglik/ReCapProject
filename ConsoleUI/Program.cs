@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -9,10 +10,45 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            Brand brand1 = new Brand
+            {
+                Name = "Fiat"
+            };
+            Brand brand2 = new Brand
+            {
+                Name = "Ford"
+            };
+            Brand brand3 = new Brand
+            {
+                Name = "Toyota"
+            };
+            brandManager.Add(brand1);
+            brandManager.Add(brand2);
+            brandManager.Add(brand3);
 
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            Car car1 = new Car { 
-                Id =1,
+
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Color color1 = new Color
+            {
+                Name = "Kırmızı"
+            };
+            Color color2 = new Color
+            {
+                Name = "Beyaz"
+            };
+            Color color3 = new Color
+            {
+                Name = "Gri"
+            };
+            colorManager.Add(color1);
+            colorManager.Add(color2);
+            colorManager.Add(color3);
+
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            Car car1 = new Car
+            {
                 BrandId = 1,
                 ColorId = 1,
                 DailyPrice = 125500,
@@ -24,7 +60,6 @@ namespace ConsoleUI
 
             Car car2 = new Car
             {
-                Id = 2,
                 BrandId = 1,
                 ColorId = 2,
                 DailyPrice = 325500,
@@ -35,7 +70,6 @@ namespace ConsoleUI
 
             Car car3 = new Car
             {
-                Id = 3,
                 BrandId = 3,
                 ColorId = 2,
                 DailyPrice = 65500,
