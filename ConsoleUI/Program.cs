@@ -78,6 +78,7 @@ namespace ConsoleUI
             };
             carManager.Add(car3);
 
+            //update
             car1.ModelYear = 2015;
             carManager.Update(car1);
 
@@ -85,10 +86,13 @@ namespace ConsoleUI
             carManager.Delete(car2);
 
             //List Cars
-            foreach (var item in carManager.GetAll())
+            foreach (var item in carManager.GetCarDetailDtos())
             {
-                Console.WriteLine($"Color Id : {item.ColorId}, Model Year : {item.ModelYear}, Daily Price : {item.DailyPrice.ToString("n2")}");
+                Console.WriteLine($"Car Name : {item.CarName}, Brand Name : {item.BrandName}, Color Name : {item.ColorName}, Daily Price : {item.DailyPrice.ToString("n2")}");
             }
+
+
+
 
         }
     }
