@@ -55,7 +55,7 @@ namespace ConsoleUI
                 Description = "Temiz araç",
                 ModelYear = 2016
             };
-            carManager.Add(car1);
+            Console.WriteLine(carManager.Add(car1).Message);
 
 
             Car car2 = new Car
@@ -66,7 +66,7 @@ namespace ConsoleUI
                 Description = "Sahibinden Temiz Araç",
                 ModelYear = 2019
             };
-            carManager.Add(car2);
+            Console.WriteLine(carManager.Add(car2));
 
             Car car3 = new Car
             {
@@ -76,7 +76,7 @@ namespace ConsoleUI
                 Description = "Hata Kaza Değişen Yok! Sadece 2 parça boyalı geyik çarptı :)",
                 ModelYear = 2009
             };
-            carManager.Add(car3);
+            Console.WriteLine(carManager.Add(car3).Message);
 
             //update
             car1.ModelYear = 2015;
@@ -86,14 +86,14 @@ namespace ConsoleUI
             carManager.Delete(car2);
 
             //List Cars
-            foreach (var item in carManager.GetCarDetailDtos())
-            {
-                Console.WriteLine($"Car Name : {item.CarName}, Brand Name : {item.BrandName}, Color Name : {item.ColorName}, Daily Price : {item.DailyPrice.ToString("n2")}");
+            var result = carManager.GetCarDetailDtos();
+            if (result.Success)
+            { 
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine($"Car Name : {item.CarName}, Brand Name : {item.BrandName}, Color Name : {item.ColorName}, Daily Price : {item.DailyPrice.ToString("n2")}");
+                }
             }
-
-
-
-
         }
     }
 }
